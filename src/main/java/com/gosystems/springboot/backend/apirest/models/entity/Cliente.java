@@ -43,6 +43,8 @@ public class Cliente implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private java.util.Date createAt;
 	
+	private String foto;
+	
 	/*@PrePersist
 	public void prePersist() {
 		this.createAt = new Date();
@@ -88,6 +90,18 @@ public class Cliente implements Serializable{
 		this.createAt = date;
 	}
 	
+	
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+
+
 	/**
 	 * 
 	 */

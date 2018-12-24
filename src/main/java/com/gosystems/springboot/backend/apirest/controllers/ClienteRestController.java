@@ -1,5 +1,6 @@
 package com.gosystems.springboot.backend.apirest.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -155,8 +156,19 @@ public class ClienteRestController {
 	@DeleteMapping("/clientes/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		Map<String, Object> response = new HashMap<>();
+		Cliente clienteActual =  clienteService.findById(id);
 		
 		try {
+			// Eliminar foto anterior
+			String nombreFotoAnterior= clienteActual.getFoto();
+			if(nombreFotoAnterior != null && nombreFotoAnterior.length() > 0) {
+				Path rutaFotoAnterior = Paths.get("uploads").resolve(nombreFotoAnterior).toAbsolutePath();
+				File archivoFotoAnterior = rutaFotoAnterior.toFile();
+				if(archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
+					archivoFotoAnterior.delete();
+				}
+			}
+						
 			clienteService.delete(id);
 			response.put("mensaje", "El cliente ha sido eliminado con exito");
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
@@ -188,6 +200,16 @@ public class ClienteRestController {
 				response.put("mensaje", "Error al agregar foto: "+ nombreArchivo);
 				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			
+			// Eliminar foto anterior
+			String nombreFotoAnterior= clienteActual.getFoto();
+			if(nombreFotoAnterior != null && nombreFotoAnterior.length() > 0) {
+				Path rutaFotoAnterior = Paths.get("uploads").resolve(nombreFotoAnterior).toAbsolutePath();
+				File archivoFotoAnterior = rutaFotoAnterior.toFile();
+				if(archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
+					archivoFotoAnterior.delete();
+				}
 			}
 
 			clienteActual.setFoto(nombreArchivo);

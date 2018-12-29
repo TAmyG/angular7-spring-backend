@@ -34,14 +34,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		// Permisos de autenticacion
-		clients.inMemory().withClient("angularapp").secret(passwordEncoder.encode("12345")).scopes("read", "write")
-				.authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(3600)
-				.refreshTokenValiditySeconds(3600);
+		clients.inMemory()
+			.withClient("angularapp")
+			.secret(passwordEncoder.encode("12345"))
+			.scopes("read", "write")
+			.authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(3600)
+			.refreshTokenValiditySeconds(3600);
 	}
 
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+		jwtAccessTokenConverter.setSigningKey(JwtConfig.LLAVE_SECRETA);
 		return jwtAccessTokenConverter;
 	}
 

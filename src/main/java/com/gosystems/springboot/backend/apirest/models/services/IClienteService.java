@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.gosystems.springboot.backend.apirest.models.entity.Cliente;
+import com.gosystems.springboot.backend.apirest.models.entity.Region;
 
 public interface IClienteService {
 
@@ -19,4 +20,5 @@ public interface IClienteService {
 	
 	public void delete(Long id);
 	
+	public List<Region> findAllRegiones();
 }

@@ -29,3 +29,26 @@ INSERT INTO `roles` (nombre) VALUES ('ROLE_ADMIN');
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (1, 1);
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (2, 2);
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (2, 1);
+
+/*Tabla productos*/
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Panasonic Pantalla LCD', 259990, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Sony Camara digital DSC-W3200', 123490, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Apple iPod shuffle', 14999990, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Sony Notebook Z110', 379990, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Hewlett Packard Multifuncional F2280', 69990, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Bianchi Bicicleta Aro 26', 259990, NOW());
+INSERT INTO productos (nombre, precio, create_at) VALUES ('Mica Comoda 5 Cajones', 299990, NOW());
+
+/*Facturas*/
+INSERT INTO facturas (descripcion, observacion, cliente_id, create_at) VALUES ('Equipos de oficina', null, 1, NOW());
+INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES (1, 1, 1);
+INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES (2, 1, 4);
+INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES (1, 1, 5);
+INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES (1, 1, 7);
+
+
+INSERT INTO facturas (descripcion, observacion, cliente_id, create_at) VALUES ('Bicicleta', 'Nota importante', 1, NOW());
+INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES (3, 2, 6);
+
+
+

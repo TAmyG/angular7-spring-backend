@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.gosystems.springboot.backend.apirest.models.entity.Cliente;
 import com.gosystems.springboot.backend.apirest.models.entity.Factura;
+import com.gosystems.springboot.backend.apirest.models.entity.Producto;
 import com.gosystems.springboot.backend.apirest.models.entity.Region;
 
 public interface IClienteService {
@@ -28,4 +29,6 @@ public interface IClienteService {
 	public Factura saveFactura(Factura factura);
 	
 	public void deleteFacturaById(Long id);
+	
+	public List<Producto> findProductoByNombre(String term);
 }

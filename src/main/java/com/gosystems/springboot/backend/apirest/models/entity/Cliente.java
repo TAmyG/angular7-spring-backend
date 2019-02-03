@@ -62,7 +62,7 @@ public class Cliente implements Serializable{
 	
 	//cascade All, si se elimina un cliente tambien se eliminaran todas las facturas
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente", cascade=CascadeType.ALL)
-	@JsonIgnoreProperties({"cliente", "hibernateLazyInitializer", "handler"})
+	@JsonIgnoreProperties(value={"cliente", "hibernateLazyInitializer", "handler"},  allowSetters=true)
 	private List<Factura> facturas;	
 	
 	
